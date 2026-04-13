@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 import {createBrowserRouter, RouterProvider} from "react-router";
+import Error from './components/error/Error.jsx'
 
 
 const router = createBrowserRouter([
@@ -26,11 +27,12 @@ const router = createBrowserRouter([
                 path: '/stats',
                 element: <h1>Stats!</h1>,
             },
-            {
-                path: '*',
-                element: <h1>Error!</h1>,
-            }
+
         ]
+    },
+    {
+        path: '*',
+        element: <Error></Error>,
     }
 ])
 

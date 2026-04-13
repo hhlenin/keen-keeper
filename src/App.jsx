@@ -8,7 +8,11 @@ function App() {
   return (
     <>
       <Navbar></Navbar>
-      <Outlet></Outlet>
+        <main className={'bg-[#F8FAFC]'}>
+            <div className={'lg:max-w-277.5 mx-auto'}>
+                <Outlet></Outlet>
+            </div>
+        </main>
       <Footer></Footer>
     </>
   )

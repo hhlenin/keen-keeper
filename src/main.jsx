@@ -4,6 +4,7 @@ import './index.css'
 import App from './App.jsx'
 import {createBrowserRouter, RouterProvider} from "react-router";
 import Error from './components/error/Error.jsx'
+import AllFrinds from './components/main/all-friends/AllFriends.jsx'
 
 
 const router = createBrowserRouter([
@@ -13,7 +14,7 @@ const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                element: <h1>Hello World!</h1>,
+                element: <AllFrinds></AllFrinds>,
             },
             {
                 path: '/details/:id',

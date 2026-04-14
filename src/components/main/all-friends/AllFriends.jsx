@@ -11,7 +11,7 @@ const AllFriends = () => {
                     relationships that matter most.</p>
                 <button className={'btn bg-[#244D3F] text-white'}><Plus size={16} strokeWidth={2} />Add a Friend</button>
             </div>
-            <div className={'grid grid-cols-4 gap-6 py-8'}>
+            <div className={'grid sm:grid-cols-2 md:grid-cols-4 gap-6 py-8'}>
                 <div className={'p-8 text-center bg-white rounded-lg shadow-lg'}>
                     <h3 className={'pb-4 text-[#244D3F] font-semibold text-3xl'}>10</h3>
                     <p className={'text-lg text-[#64748B]'}>Total Friends</p>

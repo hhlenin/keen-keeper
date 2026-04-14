@@ -9,7 +9,7 @@ function App() {
     <>
       <Navbar></Navbar>
         <main className={'bg-[#F8FAFC]'}>
-            <div className={'lg:max-w-277.5 mx-auto'}>
+            <div className={'max-w-277.5 mx-auto px-8 sm:px-16'}>
                 <Outlet></Outlet>
             </div>
         </main>

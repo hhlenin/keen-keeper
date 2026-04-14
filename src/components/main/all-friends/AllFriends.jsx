@@ -1,5 +1,6 @@
 import React from 'react';
 import {Plus} from "lucide-react"
+import FriendsCard from "./FriendsCard.jsx";
 
 const AllFriends = () => {
     return (
@@ -30,6 +31,7 @@ const AllFriends = () => {
 
             </div>
             <div className="divider before:bg-[#E9E9E9] after:bg-[#E9E9E9]"></div>
+            <FriendsCard></FriendsCard>
         </div>
     );
 };

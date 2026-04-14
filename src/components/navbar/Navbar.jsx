@@ -1,6 +1,7 @@
 import React from 'react';
 import {House, Clock3, ChartLine} from 'lucide-react'
 import logoImg from './../../assets/logo.png';
+import {NavLink} from "react-router/internal/react-server-client";
 
 const Navbar = () => {
     return (
@@ -15,18 +16,20 @@ const Navbar = () => {
                         <ul
                             tabIndex="-1"
                             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-                            <li><a className="btn bg-[#244D3F] text-white"><House size={16} strokeWidth={2} />Home</a></li>
-                            <li><a className="btn  text-[#64748B]"><Clock3 size={16} strokeWidth={2} />Timeline</a></li>
-                            <li><a className="btn  text-[#64748B]"><ChartLine size={16} strokeWidth={2} />Stats</a></li>
+                            <li><NavLink to={'/'} className={({isActive}) => isActive ? 'btn bg-[#244D3F] text-white' : 'btn  text-[#64748B]'}><House size={16} strokeWidth={2} />Home</NavLink></li>
+                            <li><NavLink to={'/timeline'} className={({isActive}) => isActive ? 'btn bg-[#244D3F] text-white' : 'btn  text-[#64748B]'}><Clock3 size={16} strokeWidth={2} />Timeline</NavLink></li>
+                            <li><NavLink to={'/stats'} className={({isActive}) => isActive ? 'btn bg-[#244D3F] text-white' : 'btn  text-[#64748B]'}><ChartLine size={16} strokeWidth={2} />Stats</NavLink></li>
 
                         </ul>
                     </div>
-                    <img className="text-xl" src={logoImg} alt="" />
+                    <NavLink to={'/'}>
+                        <img className="text-xl" src={logoImg} alt="" />
+                    </NavLink>
                 </div>
                 <div className="invisible lg:visible navbar-end gap-1">
-                    <a className="btn bg-[#244D3F] text-white"><House size={16} strokeWidth={2} />Home</a>
-                    <a className="btn  text-[#64748B]"><Clock3 size={16} strokeWidth={2} />Timeline</a>
-                    <a className="btn  text-[#64748B]"><ChartLine size={16} strokeWidth={2} />Stats</a>
+                    <NavLink to={'/'} className={({isActive}) => isActive ? 'btn bg-[#244D3F] text-white' : 'btn  text-[#64748B]'}><House size={16} strokeWidth={2} />Home</NavLink>
+                    <NavLink to={'/timeline'} className={({isActive}) => isActive ? 'btn bg-[#244D3F] text-white' : 'btn  text-[#64748B]'}><Clock3 size={16} strokeWidth={2} />Timeline</NavLink>
+                    <NavLink to={'/stats'} className={({isActive}) => isActive ? 'btn bg-[#244D3F] text-white' : 'btn  text-[#64748B]'}><ChartLine size={16} strokeWidth={2} />Stats</NavLink>
                 </div>
             </div>
         </div>

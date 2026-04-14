@@ -5,6 +5,7 @@ import App from './App.jsx'
 import {createBrowserRouter, RouterProvider} from "react-router";
 import Error from './components/error/Error.jsx'
 import AllFrinds from './components/main/all-friends/AllFriends.jsx'
+import Details from "./components/details/Details.jsx";
 
 
 const router = createBrowserRouter([
@@ -18,7 +19,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/details/:id',
-                element: <h1>Details!</h1>,
+                element: <Details></Details>,
             },
             {
                 path: '/timeline',

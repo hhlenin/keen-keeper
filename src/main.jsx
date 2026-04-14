@@ -7,6 +7,7 @@ import Error from './components/error/Error.jsx'
 import AllFrinds from './components/main/all-friends/AllFriends.jsx'
 import Details from "./components/details/Details.jsx";
 import Timeline from "./components/timeline/TimeLine.jsx";
+import Stats from "./components/stats/Stats.jsx";
 
 
 const router = createBrowserRouter([
@@ -28,7 +29,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/stats',
-                element: <h1>Stats!</h1>,
+                element: <Stats></Stats>,
             },
 
         ]

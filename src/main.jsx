@@ -6,6 +6,7 @@ import {createBrowserRouter, RouterProvider} from "react-router";
 import Error from './components/error/Error.jsx'
 import AllFrinds from './components/main/all-friends/AllFriends.jsx'
 import Details from "./components/details/Details.jsx";
+import Timeline from "./components/timeline/TimeLine.jsx";
 
 
 const router = createBrowserRouter([
@@ -23,7 +24,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/timeline',
-                element: <h1>Timeline!</h1>,
+                element: <Timeline></Timeline>,
             },
             {
                 path: '/stats',

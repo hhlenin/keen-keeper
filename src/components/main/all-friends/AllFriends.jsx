@@ -1,8 +1,12 @@
-import React from 'react';
+import React, {Suspense} from 'react';
 import {Plus} from "lucide-react"
 import FriendsCard from "./FriendsCard.jsx";
 
+const fetchFriends = async () => await fetch('/friends.json').then(res => res.json());
+
 const AllFriends = () => {
+    const friendsPromise = fetchFriends();
+
     return (
         <div className={'py-20'}>
             <div className={'flex flex-col items-center justify-center text-center'}>
@@ -31,7 +35,13 @@ const AllFriends = () => {
 
             </div>
             <div className="divider before:bg-[#E9E9E9] after:bg-[#E9E9E9]"></div>
-            <FriendsCard></FriendsCard>
+            <Suspense fallback={
+                <div className={'py-10 flex items-center justify-center'}>
+                    <span className="loading loading-infinity loading-xl"></span>
+                </div>
+            }>
+                <FriendsCard friendsPromise={friendsPromise}></FriendsCard>
+            </Suspense>
         </div>
     );
 };

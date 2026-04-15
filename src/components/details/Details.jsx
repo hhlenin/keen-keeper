@@ -1,8 +1,20 @@
-import React from 'react';
+import React, {use} from 'react';
 import randImg from "../../assets/download.jpeg";
 import {BellDot, Archive, Trash2, PhoneCall, MessageSquare, Video, History} from 'lucide-react'
+import {useParams} from "react-router";
+import {toast} from "react-toastify";
+
+const fetchFriends =  fetch('/friends.json').then(res => res.json());
 
 const Details = () => {
+
+    const params = useParams();
+    const friends = use(fetchFriends);
+
+    const friend = friends.find(friend => friend.id === parseInt(params.id));
+    if (!friend) {
+        window.location.href = "/not-found";
+    }
     return (
         <div className={'py-20 h-full w-full grid grid-cols-5 gap-y-3 gap-x-5'}>
             <div className={'col-span-2 row-span-4 py-8 text-center bg-white rounded-lg shadow-lg flex flex-col items-center gap-2'}>
@@ -10,25 +22,29 @@ const Details = () => {
                 <div className={'h-25 w-25 rounded-full overflow-hidden'}>
                     <img src={randImg} alt=""/>
                 </div>
-                <h3 className={' text-[#1F2937] font-semibold text-xl'}>David Kim</h3>
-                <p className={'text-sm text-[#64748B]'}>62d ago</p>
-                <p className={'badge badge-soft badge-success'}>work</p>
-                <p className={'badge badge-warning'}>Almost Due</p>
-                <p className={'font-medium text-[#64748B] italic'}>"Former colleague, great mentor"</p>
-                <p className={'text-sm text-[#64748B]'}>Preferred: email</p>
+                <h3 className={' text-[#1F2937] font-semibold text-xl'}>{friend.name}</h3>
+                <p className={'text-sm text-[#64748B]'}>{friend.days_since_contact}d ago</p>
+                <div className={'flex gap-2'}>{
+                    friend.tags.map((tag, index) => (
+                        <span key={index} className={'badge badge-soft badge-success'}>{tag}</span>
+                    ))
+                }</div>
+                <p className={`badge capitalize ${friend.status === 'almost-due' ? 'badge-warning' : friend.status === 'on-track' ? 'badge-success' : 'badge-error' }`}>{friend.status.replace('-', ' ')}</p>
+                <p className={'font-medium text-[#64748B] italic'}>"{friend.bio}"</p>
+                <p className={'text-sm text-[#64748B]'}>Preferred: {friend.email}</p>
 
             </div>
 
             <div className={'col-span-1 row-span-2 text-center bg-white rounded-lg shadow-lg flex flex-col justify-center'}>
-                    <h3 className={'font-semibold text-3xl text-[#244D3F]'}>62</h3>
+                    <h3 className={'font-semibold text-3xl text-[#244D3F]'}>{friend.days_since_contact}</h3>
                     <p className={'text-[#64748B]'}>Days Since Contact</p>
             </div>
             <div className={'col-span-1 row-span-2 text-center bg-white rounded-lg shadow-lg flex flex-col justify-center'}>
-                <h3 className={'font-semibold text-3xl text-[#244D3F]'}>30</h3>
+                <h3 className={'font-semibold text-3xl text-[#244D3F]'}>{friend.goal}</h3>
                 <p className={'text-[#64748B]'}>Goal (Days)</p>
             </div>
             <div className={'col-span-1 row-span-2 text-center bg-white rounded-lg shadow-lg flex flex-col justify-center'}>
-                <h3 className={'font-semibold text-3xl text-[#244D3F]'}>Feb 27, '26</h3>
+                <h3 className={'font-semibold text-3xl text-[#244D3F]'}>{friend.next_due_date}</h3>
                 <p className={'text-[#64748B]'}>Next Due</p>
             </div>
 
@@ -38,7 +54,7 @@ const Details = () => {
                        <h4 className={'font-medium text-xl text-[#244D3F]'}>Relationship Goal</h4>
                        <button className={'btn'}>Edit</button>
                    </div>
-                   <p className={'text-lg text-[#64748B]'}>Connect every <span className={'text-[#1F2937] font-bold'}>30 days</span></p>
+                   <p className={'text-lg text-[#64748B]'}>Connect every <span className={'text-[#1F2937] font-bold'}>{friend.goal} days</span></p>
                </div>
             </div>
 

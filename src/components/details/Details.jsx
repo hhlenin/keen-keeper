@@ -1,13 +1,15 @@
-import React, {use} from 'react';
+import React, {use, useContext} from 'react';
 import randImg from "../../assets/download.jpeg";
-import {BellDot, Archive, Trash2, PhoneCall, MessageSquare, Video, History} from 'lucide-react'
+import {BellDot, Archive, Trash2, PhoneCall, MessageSquare, Video, History, Text} from 'lucide-react'
 import {useParams} from "react-router";
-import {toast} from "react-toastify";
+import {FriendsContext} from "../../context/FriendsContext.jsx";
 
 const fetchFriends =  fetch('/friends.json').then(res => res.json());
 
 const Details = () => {
 
+    const context = useContext(FriendsContext);
+    const {handleCommunication, communication} = context;
     const params = useParams();
     const friends = use(fetchFriends);
 
@@ -15,6 +17,8 @@ const Details = () => {
     if (!friend) {
         window.location.href = "/not-found";
     }
+    const friendCommunicationFilterData = communication.filter(data => data.friend_id === friend.id)
+
     return (
         <div className={'py-20 h-full w-full grid grid-cols-5 gap-y-3 gap-x-5'}>
             <div className={'col-span-2 row-span-4 py-8 text-center bg-white rounded-lg shadow-lg flex flex-col items-center gap-2'}>
@@ -66,15 +70,15 @@ const Details = () => {
                 <div className={'w-full'}>
                     <h3 className={'pb-4 text-xl font-medium text-[#244D3F]'}>Quick Check-In</h3>
                     <div className={'grid grid-cols-3 gap-4'}>
-                        <div className={'bg-[#F8FAFC] rounded-lg shadow-lg p-4 grid place-items-center space-y-2'}>
+                        <div onClick={() => handleCommunication(friend, 'call')} className={'bg-[#F8FAFC] rounded-lg shadow-lg p-4 grid place-items-center space-y-2'}>
                             <PhoneCall strokeWidth={2.5} size={28} />
                             <p className={'text-[#1F2937] text-lg'}>Call</p>
                         </div>
-                        <div className={'bg-[#F8FAFC] rounded-lg shadow-lg p-4 grid place-items-center space-y-2'}>
+                        <div onClick={() => handleCommunication(friend, 'text')} className={'bg-[#F8FAFC] rounded-lg shadow-lg p-4 grid place-items-center space-y-2'}>
                             <MessageSquare strokeWidth={2.5} size={28} />
                             <p className={'text-[#1F2937] text-lg'}>Text</p>
                         </div>
-                        <div className={'bg-[#F8FAFC] rounded-lg shadow-lg p-4 grid place-items-center space-y-2'}>
+                        <div onClick={() => handleCommunication(friend, 'video')} className={'bg-[#F8FAFC] rounded-lg shadow-lg p-4 grid place-items-center space-y-2'}>
                             <Video strokeWidth={2.5} size={28} />
                             <p className={'text-[#1F2937] text-lg'}>Video</p>
                         </div>
@@ -97,23 +101,40 @@ const Details = () => {
                         <button className={'btn'}><History strokeWidth={2} size={16} />Full History</button>
                     </div>
                     <div>
-                        <div className={'flex items-center p-4 gap-3'}>
-                            <PhoneCall strokeWidth={2.5} size={28} />
-                            <div className={'flex-1 text-left'}>
-                                <p className={'text-lg'}>Text</p>
-                                <p>Asked for career advice</p>
-                            </div>
-                            <p className={'text-sm'}>Jan 28, 2026</p>
-                        </div>
-                        <div className="divider before:bg-[#E9E9E9] after:bg-[#E9E9E9] "></div>
-                        <div className={'flex items-center p-4 gap-3'}>
-                            <PhoneCall strokeWidth={2.5} size={28} />
-                            <div className={'flex-1 text-left'}>
-                                <p className={'text-lg'}>Text</p>
-                                <p>Asked for career advice</p>
-                            </div>
-                            <p className={'text-sm'}>Jan 28, 2026</p>
-                        </div>
+                        {
+                            friendCommunicationFilterData.length === 0 && <p>No History Found</p>
+                        }
+                        {
+                            friendCommunicationFilterData.map((data, index) => (
+
+                                <div key={index} >
+                                    <div className={'flex items-center p-4 gap-3'}>
+                                    {
+                                        data.type === 'call' ? <PhoneCall strokeWidth={2.5} size={28} /> : data.type === 'text' ? <MessageSquare strokeWidth={2.5} size={28}></MessageSquare> : <Video strokeWidth={2.5} size={28}></Video>
+                                    }
+
+                                    <div className={'flex-1 text-left'}>
+                                        <p className={'text-lg capitalize'}>{data.type}</p>
+                                        <p>with {data.name}</p>
+                                    </div>
+                                    <div className={'flex flex-col text-right'}>
+                                        <p className={'text-sm'}>{data.date}</p>
+                                        <p className={'text-sm'}>{data.time}</p>
+                                    </div>
+                                    </div>
+                                    {
+                                        friendCommunicationFilterData.length !== index + 1 && <div className="divider before:bg-[#E9E9E9] after:bg-[#E9E9E9] "></div>
+                                    }
+
+
+
+
+                                </div>
+
+                            ))
+
+
+                        }
                     </div>
                 </div>
             </div>

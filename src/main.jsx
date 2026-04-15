@@ -8,6 +8,7 @@ import AllFrinds from './components/main/all-friends/AllFriends.jsx'
 import Details from "./components/details/Details.jsx";
 import Timeline from "./components/timeline/TimeLine.jsx";
 import Stats from "./components/stats/Stats.jsx";
+import FriendsProvider from "./context/FriendsContext.jsx";
 
 
 const router = createBrowserRouter([
@@ -42,6 +43,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router}></RouterProvider>
+      <FriendsProvider>
+          <RouterProvider router={router}></RouterProvider>
+      </FriendsProvider>
   </StrictMode>,
 )

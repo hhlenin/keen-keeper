@@ -1,5 +1,6 @@
 import React, {use} from 'react';
 import randImg from './../../../assets/download.jpeg'
+import {Link} from "react-router";
 
 const FriendsCard = ({friendsPromise}) => {
     const friends = use(friendsPromise)
@@ -8,7 +9,8 @@ const FriendsCard = ({friendsPromise}) => {
             <h3 className={'text-[#1F2937] font-semibold text-2xl'}>Your Friends</h3>
             <div className={'grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 py-8'}>
                 {friends.map(friend => (
-                    <div key={friend.id} className={'p-6 text-center bg-white rounded-lg shadow-lg flex flex-col items-center gap-2'}>
+                    <Link key={friend.id} to={'/details/' + friend.id} >
+                    <div className={'p-6 text-center bg-white rounded-lg shadow-lg flex flex-col items-center gap-2'}>
                         <div className={'h-25 w-25 rounded-full overflow-hidden'}>
                             <img src={randImg} alt=""/>
                         </div>
@@ -17,11 +19,12 @@ const FriendsCard = ({friendsPromise}) => {
 
                         <div className={'flex gap-2'}>{
                             friend.tags.map((tag, index) => (
-                                <span key={index} className={'badge badge-soft badge-success'}>{tag}</span>
+                                <span key={index} className={'capitalize badge badge-soft badge-success'}>{tag}</span>
                             ))
                         }</div>
                         <p className={`badge capitalize ${friend.status === 'almost-due' ? 'badge-warning' : friend.status === 'on-track' ? 'badge-success' : 'badge-error' }`}>{friend.status.replace('-', ' ')}</p>
                     </div>
+                    </Link>
                 ))}
 
             </div>

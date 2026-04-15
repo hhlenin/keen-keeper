@@ -1,13 +1,21 @@
-import React from 'react';
-import {PhoneCall} from "lucide-react";
+import React, {useContext} from 'react';
 import {Legend, Pie, PieChart, Tooltip} from 'recharts';
 import { RechartsDevtools  } from '@recharts/devtools';
+import {FriendsContext} from "../../context/FriendsContext.jsx";
 
 const Stats = () => {
+
+    const context = useContext(FriendsContext);
+    const {communication} = context;
+
+    const totalCall = communication.filter(data => data.type === 'call').length
+    const totalVideo = communication.filter(data => data.type === 'video').length
+    const totalText = communication.filter(data => data.type === 'text').length
+
     const data = [
-        { name: 'Group C', value: 300, fill: '#7E35E1' },
-        { name: 'Group B', value: 300, fill: '#244D3F' },
-        { name: 'Group D', value: 200, fill: '#37A163' },
+        { name: 'Calls', value: totalCall, fill: '#7E35E1' },
+        { name: 'Videos', value: totalVideo, fill: '#244D3F' },
+        { name: 'Texts', value: totalText, fill: '#37A163' },
     ];
     return (
         <div className={'py-20'}>
@@ -20,10 +28,10 @@ const Stats = () => {
                         innerRadius="80%"
                         outerRadius="100%"
                         // Corner radius is the rounded edge of each pie slice
-                        cornerRadius="50%"
+                        cornerRadius="10%"
                         fill="#8884d8"
                         // padding angle is the gap between each pie slice
-                        paddingAngle={5}
+                        paddingAngle={2}
                         dataKey="value"
                         isAnimationActive={true}
                         active={true}

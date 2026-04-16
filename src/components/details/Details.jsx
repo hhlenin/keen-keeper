@@ -2,13 +2,21 @@ import React, {use, useContext} from 'react';
 import {BellDot, Archive, Trash2, PhoneCall, MessageSquare, Video, History} from 'lucide-react'
 import {useParams} from "react-router";
 import {FriendsContext} from "../../context/FriendsContext.jsx";
+import {getTimelineDataFromStorage} from "../../util/localStorage.jsx";
 
 const fetchFriends =  fetch('/friends.json').then(res => res.json());
 
 const Details = () => {
 
     const context = useContext(FriendsContext);
-    const {handleCommunication, communication} = context;
+    const {handleCommunication, communication, setCommunication} = context;
+    if(communication.length === 0) {
+
+        if (getTimelineDataFromStorage().length !== 0) {
+
+            setCommunication(getTimelineDataFromStorage())
+        }
+    }
     const params = useParams();
     const friends = use(fetchFriends);
 

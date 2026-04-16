@@ -8,7 +8,7 @@ const AllFriends = () => {
     const friendsPromise = fetchFriends();
 
     return (
-        <div className={'py-20'}>
+        <div className={'py-10 lg:py-20'}>
             <div className={'flex flex-col items-center justify-center text-center'}>
                 <h2 className={'pb-4 text-[#1F2937] font-bold text-5xl'}>Friends to keep close in your life</h2>
                 <p className={'pb-8 text-[#64748B]'}>Your personal shelf of meaningful connections. Browse, tend, and nurture the <br/>

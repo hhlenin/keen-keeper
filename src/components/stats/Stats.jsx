@@ -18,7 +18,7 @@ const Stats = () => {
         { name: 'Texts', value: totalText, fill: '#37A163' },
     ];
     return (
-        <div className={'py-20'}>
+        <div className={'py-10 lg:py-20'}>
             <h2 className={'font-bold text-5xl pb-6 text-[#1F2937]'}>Timeline</h2>
             <div className={'flex flex-col text-left gap-4 items-center p-8 rounded-lg bg-white shadow-lg'}>
                 <h4 className={'w-full font-medium text-xl text-[#244D3F]'}>By Interaction Type</h4>

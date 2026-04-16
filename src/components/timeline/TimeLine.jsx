@@ -16,7 +16,7 @@ const TimeLine = () => {
     })
 
     return (
-        <div className={'py-20'}>
+        <div className={'py-10 lg:py-20'}>
             <h2 className={'font-bold text-5xl pb-6 text-[#1F2937]'}>Timeline</h2>
             {/*<select onChange={(event) => handleFilter(event.target.value)} defaultValue="null" className="select mb-5">*/}
             <select onChange={(event) => setTab(event.target.value)} defaultValue="null" className="select mb-5">

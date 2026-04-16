@@ -1,5 +1,7 @@
 import React, {createContext, useState} from 'react';
 import {toast} from "react-toastify";
+import {setTimelineDataFromStorage} from "../util/localStorage.jsx";
+
 
 export const FriendsContext = createContext();
 
@@ -21,8 +23,10 @@ const FriendsProvider = ({children}) => {
             date: date.toLocaleDateString(),
             time: date.toLocaleTimeString(),
         }
+        const newData = [...communication, data];
 
-        setCommunication([...communication, data]);
+        setCommunication(newData);
+        setTimelineDataFromStorage(newData);
 
     }
     const [timelineData, setTimelineData] = useState([]);

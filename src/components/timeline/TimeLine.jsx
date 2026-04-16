@@ -1,11 +1,20 @@
 import React, {useContext, useState} from 'react';
 import {MessageSquare, PhoneCall, Video} from "lucide-react";
 import {FriendsContext} from "../../context/FriendsContext.jsx";
+import {getTimelineDataFromStorage} from "../../util/localStorage.jsx";
 
 const TimeLine = () => {
 
     const context = useContext(FriendsContext);
-    const {communication} = context;
+    const {communication, setCommunication} = context;
+
+    if(communication.length === 0) {
+
+        if (getTimelineDataFromStorage().length !== 0) {
+
+            setCommunication(getTimelineDataFromStorage())
+        }
+    }
     const [tab, setTab] = useState(null);
 
     const filterData = communication.filter(item => {

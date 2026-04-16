@@ -1,33 +1,45 @@
-import React from 'react';
-import { PhoneCall} from "lucide-react";
+import React, {useContext, useState} from 'react';
+import {MessageSquare, PhoneCall, Video} from "lucide-react";
+import {FriendsContext} from "../../context/FriendsContext.jsx";
 
 const TimeLine = () => {
+
+    const context = useContext(FriendsContext);
+    const {communication} = context;
+    const [tab, setTab] = useState(null);
+
     return (
         <div className={'py-20'}>
             <h2 className={'font-bold text-5xl pb-6 text-[#1F2937]'}>Timeline</h2>
-            <details className="dropdown">
-                <summary className="btn m-1 text-[#64748B]">Filter Timeline</summary>
-                <ul className="menu dropdown-content bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
-                    <li><a>Item 1</a></li>
-                    <li><a>Item 2</a></li>
-                </ul>
-            </details>
+            {/*<select onChange={(event) => handleFilter(event.target.value)} defaultValue="null" className="select mb-5">*/}
+            <select onChange={(event) => setTab(event.target.value)} defaultValue="null" className="select mb-5">
+                <option value={'null'} disabled={true}>Filter Timeline</option>
+                <option value={'all'}>All</option>
+                <option value={'text'}>Text</option>
+                <option value={'call'}>Call</option>
+                <option value={'video'}>Video</option>
+            </select>
             <div>
                 <div className={'space-y-6'}>
-                    <div className={'flex gap-4 items-center p-4 rounded-lg bg-white shadow-lg'}>
-                        <PhoneCall strokeWidth={2.5} size={36} />
-                        <div>
-                            <p className={'pb-1 text-[#64748B] text-lg'}><span className={'text-[#244D3F] text-xl font-bold'}>Meetup</span> with Tom Baker</p>
-                            <p className={'text-[#64748B] font-medium'}>March 29, 2026</p>
-                        </div>
-                    </div>
-                    <div className={'flex gap-4 items-center p-4 rounded-lg bg-white shadow-lg'}>
-                        <PhoneCall strokeWidth={2.5} size={36} />
-                        <div>
-                            <p className={'pb-1 text-[#64748B] text-lg'}><span className={'text-[#244D3F] text-xl font-bold'}>Meetup</span> with Tom Baker</p>
-                            <p className={'text-[#64748B] font-medium'}>March 29, 2026</p>
-                        </div>
-                    </div>
+                    {
+                        communication.filter(item => {
+                                if (tab === 'all' || tab === null) {
+                                    return true
+                                }
+                                return item.type === tab
+                            }).map((item, index) => (
+                            <div key={index} className={'flex gap-4 items-center p-4 rounded-lg bg-white shadow-lg'}>
+                                {
+                                    item.type === 'call' ? <PhoneCall strokeWidth={2.5} size={36} /> : item.type === 'text' ? <MessageSquare strokeWidth={2.5} size={36}></MessageSquare> : <Video strokeWidth={2.5} size={36}></Video>
+                                }
+                                <div>
+                                    <p className={'pb-1 text-[#64748B] text-lg'}><span className={'capitalize text-[#244D3F] text-xl font-bold'}>{item.type}</span> with {item.name}</p>
+                                    <p className={'text-[#64748B] font-medium'}>{item.date} at {item.time}</p>
+                                </div>
+                            </div>
+
+                        ))
+                    }
                 </div>
             </div>
         </div>

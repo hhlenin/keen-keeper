@@ -69,7 +69,7 @@ const Details = () => {
             <div className={'col-span-3 row-span-3 p-6 text-left bg-white rounded-lg shadow flex justify-center items-center'}>
                 <div className={'w-full'}>
                     <h3 className={'pb-4 text-xl font-medium text-[#244D3F]'}>Quick Check-In</h3>
-                    <div className={'grid grid-cols-3 gap-4'}>
+                    <div className={'cursor-pointer grid grid-cols-3 gap-4'}>
                         <div onClick={() => handleCommunication(friend, 'call')} className={'bg-[#F8FAFC] rounded-lg shadow-lg p-4 grid place-items-center space-y-2'}>
                             <PhoneCall strokeWidth={2.5} size={28} />
                             <p className={'text-[#1F2937] text-lg'}>Call</p>

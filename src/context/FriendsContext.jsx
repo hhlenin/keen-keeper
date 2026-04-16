@@ -25,11 +25,25 @@ const FriendsProvider = ({children}) => {
         setCommunication([...communication, data]);
 
     }
+    const [timelineData, setTimelineData] = useState([]);
+
+    const handleFilter = (type = null) => {
+        if (type !== 'null') {
+            setTimelineData( communication.filter(filter => filter.type === type));
+            // return 0;
+        } else {
+            setTimelineData(communication)
+
+        }
+        console.log(timelineData);
+    }
 
     const data = {
         communication,
         setCommunication,
         handleCommunication,
+        timelineData,
+        handleFilter,
     }
     return <FriendsContext.Provider value={data}>{children}</FriendsContext.Provider>;
 };

@@ -1,16 +1,54 @@
-# React + Vite
+(title)KeenKeeper — Keep Your Friendships Alive
+(description)KeenKeeper is a friendship management dashboard. It helps users to maintain meaningful 
+connections with their friends in a busy world. This application allows users to track
+their last contact dates, set your relationship goals, and keeps interactions log to 
+ensure no friend is left behind.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+(section)
+(title)Key Features
+(content)
+Relationship Tracking Dashboard: A overview of your social circle using status indicators 
+(on-track/almost-due/overdue) to prioritize who needs a immediate interaction.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Interaction Logging: Seamlessly log calls, texts, or video chats directly from a friend's 
+profile, providing real-time feedback via toast notifications and updating your personal timeline.
 
-## React Compiler
+Friendship Analytics: Data-driven insights via an integrated stats page shows a Recharts based
+breakdown of your communication habits (Call vs. Text vs. Video).
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## Expanding the ESLint configuration
+(section)
+(title)Technologies Used
+(content:table)
+(table title)Technology (table title)Purpose
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+React.jsCore:
+UI library for building a dynamic, component-based single-page application.
+
+React Router:
+Managed seamless client-side navigation between Home, Timeline, and Stats pages.
+
+Tailwind CSS:
+Used for rapid, responsive styling to make sure the app works across mobile, tablet, and desktop.
+
+Recharts:
+Implemented for rendering the interactive Pie Chart on the Friendship Analytics page.
+
+Lucide React:
+Provided consistent iconography for the Navbar and timeline entries.
+
+React-Toastify:
+Provided non-intrusive beautiful yet simple toast notification pop-ups
+
+(section)
+(title)Responsiveness & UX
+(content)
+Fully Responsive: The layout adapts from a 4-column grid on desktop to a 2-column layout on tablets 
+to a single-column layout on mobile devices.
+
+Dynamic UI: Includes loading states during data fetching and a custom 404 page for invalid routes.
+
+Active Tracking: The navigation bar highlights the current page, and timeline filters allow users 
+to sort through their interaction history with ease.
+

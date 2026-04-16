@@ -21,16 +21,16 @@ const AllFriends = () => {
                     <p className={'text-lg text-[#64748B]'}>Total Friends</p>
                 </div>
                 <div className={'p-8 text-center bg-white rounded-lg shadow-lg'}>
-                    <h3 className={'pb-4 text-[#244D3F] font-semibold text-3xl'}>10</h3>
-                    <p className={'text-lg text-[#64748B]'}>Total Friends</p>
+                    <h3 className={'pb-4 text-[#244D3F] font-semibold text-3xl'}>3</h3>
+                    <p className={'text-lg text-[#64748B]'}>On Track</p>
                 </div>
                 <div className={'p-8 text-center bg-white rounded-lg shadow-lg'}>
-                    <h3 className={'pb-4 text-[#244D3F] font-semibold text-3xl'}>10</h3>
-                    <p className={'text-lg text-[#64748B]'}>Total Friends</p>
+                    <h3 className={'pb-4 text-[#244D3F] font-semibold text-3xl'}>6</h3>
+                    <p className={'text-lg text-[#64748B]'}>Need Attention</p>
                 </div>
                 <div className={'p-8 text-center bg-white rounded-lg shadow-lg'}>
-                    <h3 className={'pb-4 text-[#244D3F] font-semibold text-3xl'}>10</h3>
-                    <p className={'text-lg text-[#64748B]'}>Total Friends</p>
+                    <h3 className={'pb-4 text-[#244D3F] font-semibold text-3xl'}>9</h3>
+                    <p className={'text-lg text-[#64748B]'}>Interaction this month</p>
                 </div>
 
             </div>

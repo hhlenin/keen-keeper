@@ -22,6 +22,10 @@ const Stats = () => {
             <h2 className={'font-bold text-5xl pb-6 text-[#1F2937]'}>Timeline</h2>
             <div className={'flex flex-col text-left gap-4 items-center p-8 rounded-lg bg-white shadow-lg'}>
                 <h4 className={'w-full font-medium text-xl text-[#244D3F]'}>By Interaction Type</h4>
+
+                    {(totalCall === 0 && totalText === 0 && totalVideo === 0) ? <div className={'flex py-10 justify-center items-center'}><p>No Data Found</p></div> :
+
+
                 <PieChart style={{ width: '100%', maxWidth: '300px', maxHeight: '80vh', aspectRatio: 1 }} responsive>
                     <Pie
                         data={data}
@@ -40,6 +44,7 @@ const Stats = () => {
                     <Tooltip />
                     <Legend />
                 </PieChart>
+            }
             </div>
         </div>
     );

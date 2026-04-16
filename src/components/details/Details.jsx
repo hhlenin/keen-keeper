@@ -1,6 +1,5 @@
 import React, {use, useContext} from 'react';
-import randImg from "../../assets/download.jpeg";
-import {BellDot, Archive, Trash2, PhoneCall, MessageSquare, Video, History, Text} from 'lucide-react'
+import {BellDot, Archive, Trash2, PhoneCall, MessageSquare, Video, History} from 'lucide-react'
 import {useParams} from "react-router";
 import {FriendsContext} from "../../context/FriendsContext.jsx";
 
@@ -24,7 +23,7 @@ const Details = () => {
             <div className={'col-span-2 row-span-4 py-8 text-center bg-white rounded-lg shadow-lg flex flex-col items-center gap-2'}>
 
                 <div className={'h-25 w-25 rounded-full overflow-hidden'}>
-                    <img src={randImg} alt=""/>
+                    <img src={friend.picture} alt=""/>
                 </div>
                 <h3 className={' text-[#1F2937] font-semibold text-xl'}>{friend.name}</h3>
                 <p className={'text-sm text-[#64748B]'}>{friend.days_since_contact}d ago</p>

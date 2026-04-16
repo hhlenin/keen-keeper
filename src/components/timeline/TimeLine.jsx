@@ -8,6 +8,13 @@ const TimeLine = () => {
     const {communication} = context;
     const [tab, setTab] = useState(null);
 
+    const filterData = communication.filter(item => {
+        if (tab === 'all' || tab === null) {
+            return true
+        }
+        return item.type === tab
+    })
+
     return (
         <div className={'py-20'}>
             <h2 className={'font-bold text-5xl pb-6 text-[#1F2937]'}>Timeline</h2>
@@ -21,13 +28,9 @@ const TimeLine = () => {
             </select>
             <div>
                 <div className={'space-y-6'}>
+                    {filterData.length === 0 && <div className={'flex py-10 justify-center items-center'}><p>No Data Found</p></div>}
                     {
-                        communication.filter(item => {
-                                if (tab === 'all' || tab === null) {
-                                    return true
-                                }
-                                return item.type === tab
-                            }).map((item, index) => (
+                        filterData.map((item, index) => (
                             <div key={index} className={'flex gap-4 items-center p-4 rounded-lg bg-white shadow-lg'}>
                                 {
                                     item.type === 'call' ? <PhoneCall strokeWidth={2.5} size={36} /> : item.type === 'text' ? <MessageSquare strokeWidth={2.5} size={36}></MessageSquare> : <Video strokeWidth={2.5} size={36}></Video>
